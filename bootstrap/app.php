@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(fn () => route('login'));
 
         $middleware->throttleApi();
+
+        $middleware->trustProxies('*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
