@@ -13,24 +13,31 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
+        "ext-exif": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-imagick": "*",
+        "ext-intl": "*",
+        "ext-redis": "*",
         "guzzlehttp/guzzle": "^7.10",
-        "laravel/framework": "^12.42",
-        "laravel/horizon": "^5.40.2",
-        "laravel/sanctum": "^4.2.1",
-        "laravel/tinker": "^2.10.2",
+        "laravel/framework": "^12.51.0",
+        "laravel/horizon": "^5.44",
+        "laravel/sanctum": "^4.3.1",
+        "laravel/tinker": "^2.11.1",
         "laravel/ui": "^v4.6.1",
-        "spatie/laravel-mailcoach": "^9.4.2",
+        "nunomaduro/essentials": "^1.0.1",
+        "spatie/laravel-mailcoach": "^9.5.2",
         "spatie/laravel-welcome-notification": "^2.4.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
-        "laravel/pail": "^1.2.4",
-        "laravel/pint": "^1.26",
-        "laravel/sail": "^1.51",
+        "laravel/pail": "^1.2.6",
+        "laravel/pint": "^1.27.1",
+        "laravel/sail": "^1.53",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.8.3",
-        "phpunit/phpunit": "^11.5.46"
+        "phpunit/phpunit": "^11.5.53"
     },
     "autoload": {
         "psr-4": {
@@ -61,6 +68,14 @@
             "@php artisan key:generate --ansi",
             "@php artisan mailcoach:publish",
             "@php artisan vendor:publish --tag=mailcoach-migrations"
+        ],
+        "predeploy": [
+            "@php artisan storage:link --force"
+        ],
+        "postdeploy": [
+            "@php artisan optimize",
+
+            "@php artisan migrate --force --isolated"
         ]
     },
     "extra": {

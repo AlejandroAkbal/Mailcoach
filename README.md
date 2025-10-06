@@ -19,3 +19,31 @@ Read our documentation on [how to get started](https://mailcoach.app/self-hosted
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+
+## Installation & updating
+
+```shell
+git rebase upstream/main
+
+docker run --rm \
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/var/www/html" \
+  -w /var/www/html \
+  laravelsail/php83-composer:latest \
+  composer install --ignore-platform-reqs
+  
+  ./vendor/bin/sail up --remove-orphans
+  
+  ./vendor/bin/sail composer outdated --direct
+  
+ ./vendor/bin/sail composer update  && ./vendor/bin/sail composer bump
+```
+
+To update the migrations: 
+
+```shell
+php artisan vendor:publish --tag=mailcoach-migrations
+
+And then ask an AI: 
+`Hey, I want you to compare the old 2024 mailcoach migrations to the new ones, and then I want you to delete the new ones, and implement the difference in new migrations, this way I can "update" my old migrations to the new ones. Were using Laravel Sail`
+```
