@@ -22,3 +22,5 @@ public/css/filament
 database/migrations
 
 /.phpunit.cache
+
+.claude/

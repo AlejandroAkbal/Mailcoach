@@ -20,7 +20,7 @@
         "laravel/sanctum": "^4.2.1",
         "laravel/tinker": "^2.10.2",
         "laravel/ui": "^v4.6.1",
-        "spatie/laravel-mailcoach": "^9.4.2",
+        "spatie/laravel-mailcoach": "^10.0",
         "spatie/laravel-welcome-notification": "^2.4.4"
     },
     "require-dev": {
