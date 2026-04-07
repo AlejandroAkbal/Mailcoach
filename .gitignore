@@ -19,8 +19,9 @@ composer.lock
 public/vendor
 public/js/filament
 public/css/filament
-database/migrations
-
+# Migrations are needed for deployment or it will fail
+#database/migrations
 /.phpunit.cache
+/.phpunit.result.cache
 
 .claude/
