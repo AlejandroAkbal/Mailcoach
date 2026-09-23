@@ -37,6 +37,7 @@ services:
           context: .
           args:
             COMPOSER_AUTH: '${COMPOSER_AUTH}'
+        image: '${COOLIFY_RESOURCE_UUID:-mailcoach}-laravel:latest'
         restart: unless-stopped
         environment:
           PHP_FPM_POOL_NAME: "my-app_php"
@@ -57,6 +58,7 @@ services:
           context: .
           args:
             COMPOSER_AUTH: '${COMPOSER_AUTH}'
+        image: '${COOLIFY_RESOURCE_UUID:-mailcoach}-laravel:latest'
         command: ["php", "/var/www/html/artisan", "horizon"]
         restart: unless-stopped
         environment:
@@ -94,3 +96,4 @@ services:
         healthcheck:
           # https://stackoverflow.com/a/70706628
           test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+

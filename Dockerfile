@@ -51,6 +51,17 @@ USER www-data
 
 RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
+# Spatie Mailcoach CalculateTransactionalStatisticsJob bug workaround:
+# In CalculateTransactionalStatisticsJob, contentItem is eager-loaded selecting only:
+# 'contentItem:id,model_id,model_type,statistics_calculated_at'.
+# However, dispatchCalculateStatistics() dispatches CalculateStatisticsJob which calls
+# $this->contentItem->uuid for uniqueId(), throwing a fatal MissingAttributeException.
+# Because spatie/laravel-mailcoach is proprietary software distributed via private Satis
+# (satis.spatie.be) rather than a public git repository, we patch this inline post-composer install.
+# The grep assertion ensures the Docker build halts deterministically if Spatie alters this file upstream.
+RUN sed -i 's/contentItem:id,model_id/contentItem:id,uuid,model_id/' vendor/spatie/laravel-mailcoach/src/Domain/TransactionalMail/Jobs/CalculateTransactionalStatisticsJob.php && \
+    grep -q 'contentItem:id,uuid,model_id' vendor/spatie/laravel-mailcoach/src/Domain/TransactionalMail/Jobs/CalculateTransactionalStatisticsJob.php
+
 ##############################################################################
 
 RUN npm install --include=dev --no-audit && \
