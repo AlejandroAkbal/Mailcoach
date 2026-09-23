@@ -51,6 +51,10 @@ USER www-data
 
 RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
+# Fix Spatie Mailcoach CalculateTransactionalStatisticsJob missing uuid attribute bug
+RUN sed -i 's/contentItem:id,model_id/contentItem:id,uuid,model_id/' vendor/spatie/laravel-mailcoach/src/Domain/TransactionalMail/Jobs/CalculateTransactionalStatisticsJob.php && \
+    grep -q 'contentItem:id,uuid,model_id' vendor/spatie/laravel-mailcoach/src/Domain/TransactionalMail/Jobs/CalculateTransactionalStatisticsJob.php
+
 ##############################################################################
 
 RUN npm install --include=dev --no-audit && \

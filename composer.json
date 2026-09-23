@@ -20,24 +20,24 @@
         "ext-imagick": "*",
         "ext-intl": "*",
         "ext-redis": "*",
-        "guzzlehttp/guzzle": "^7.10",
-        "laravel/framework": "^12.56.0",
-        "laravel/horizon": "^5.45.5",
-        "laravel/sanctum": "^4.3.1",
+        "guzzlehttp/guzzle": "^7.15.5",
+        "laravel/framework": "^12.69.2",
+        "laravel/horizon": "^5.50.0",
+        "laravel/sanctum": "^4.3.3",
         "laravel/tinker": "^2.11.1",
         "laravel/ui": "^4.6.3",
         "nunomaduro/essentials": "^1.2.0",
-        "spatie/laravel-mailcoach": "^10.1.12",
+        "spatie/laravel-mailcoach": "^10.5.3",
         "spatie/laravel-welcome-notification": "^2.5.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
-        "laravel/pail": "^1.2.6",
-        "laravel/pint": "^1.29.0",
-        "laravel/sail": "^1.56",
-        "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.9.3",
-        "phpunit/phpunit": "^11.5.55"
+        "laravel/pail": "^1.2.7",
+        "laravel/pint": "^1.32.1",
+        "laravel/sail": "^1.68",
+        "mockery/mockery": "^1.6.15",
+        "nunomaduro/collision": "^8.9.5",
+        "phpunit/phpunit": "^11.5.56"
     },
     "autoload": {
         "psr-4": {
