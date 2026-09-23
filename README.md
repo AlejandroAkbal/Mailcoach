@@ -72,6 +72,10 @@ This repository provides an **automated, battle-tested Docker Compose template d
 4. Set the **Build Pack** to **Docker Compose**.
 5. Set **Docker Compose Location** to `/docker-compose.prod.yml`.
 
+---
+
+## ⚙️ Configuration
+
 ### Step 2: Configure Build Secrets
 Under your Application settings in Coolify, go to **Environment Variables** and add your build-time Composer license credentials:
 
@@ -131,10 +135,15 @@ docker run --rm \
   composer update spatie/laravel-mailcoach -W
 
 # 2. Bump composer constraints
-composer bump
+docker run --rm \
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/var/www/html" \
+  -w /var/www/html \
+  laravelsail/php83-composer:latest \
+  composer bump
 
 # 3. Commit and push to trigger Coolify automatic deployment
-git add composer.json composer.lock
+git add composer.json
 git commit -m "chore: upgrade Mailcoach to latest release"
 git push origin main
 ```

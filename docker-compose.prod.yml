@@ -96,3 +96,9 @@ services:
         healthcheck:
           # https://stackoverflow.com/a/70706628
           test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+
+volumes:
+  mailcoach-storage:
+  mailcoach-db:
+  mailcoach-redis:
+
