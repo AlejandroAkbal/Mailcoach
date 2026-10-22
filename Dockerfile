@@ -1,5 +1,5 @@
 ARG PHP_VERSION=8
-ARG NODE_VERSION=20
+ARG NODE_VERSION=22
 
 FROM node:${NODE_VERSION}-alpine AS node
 # https://serversideup.net/open-source/docker-php/docs/getting-started/installation
